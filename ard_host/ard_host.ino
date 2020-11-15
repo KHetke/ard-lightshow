@@ -15,9 +15,6 @@ const uint16_t loopIterMax = 128; // Iterations of the loop before resetting
 const uint8_t fftDecimationFactor = 16; // Decimation factor for determining lightMatrix codes
 const uint8_t fftTrigAmplitude = 10; // Trigger amplitude to turn on light elements
 
-// Objects
-RF24 radio(RF24CEPin, RF24CSNPin);
-
 // Internal Values
 int loopIter = 0;                 // Program counter to check current loop iteration
 double micValueReal[loopIterMax]; // Value over program loop from the microphone
@@ -28,7 +25,7 @@ int rxLightEnable = 1;
 void setup()
 {
   // Open Serial
-  Serial.begin(115200);
+  Serial.begin(9600);
   while(!Serial);
   Serial.println("Ready");
 
@@ -37,21 +34,22 @@ void setup()
   pinMode(RF24CSNPin, OUTPUT);
   pinMode(MICPin, INPUT);
 
-  // Initialize Radio
-  radio.begin();
+  radioInit();
 }
 
 void loop()
 {
+  //Serial.println(micValueReal[loopIter]);
   micValueReal[loopIter] = analogRead(MICPin);
   micValueImag[loopIter] = 0.0;
+  //Serial.println(micValueReal[loopIter]);
   loopIter++;
   if (loopIter == loopIterMax)
   {
     doAudio();
     doTX();
     loopIter = 0;
-    delay(5);
+    delay(50);
   }
   delay(1);
 }

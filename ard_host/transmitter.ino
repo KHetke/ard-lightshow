@@ -1,11 +1,28 @@
-byte address_max[6]= "00007";     // RF Address Selection
-byte address[6] = "00000";        // RF Address Selection
+const byte address[][5] = {{'A','L','0','0','0'},
+                           {'A','L','0','0','1'},
+                           {'A','L','0','0','2'},
+                           {'A','L','0','0','3'},
+                           {'A','L','0','0','4'},
+                           {'A','L','0','0','5'},
+                           {'A','L','0','0','6'},
+                           {'A','L','0','0','7'}};
+
+RF24 radio(RF24CEPin, RF24CSNPin);
+
+void radioInit()
+{
+  radio.begin();
+  radio.stopListening();
+  radio.setDataRate( RF24_2MBPS );
+  radio.setRetries(4,5); // delay, count
+}
 
 void doTX()
 {
-  for (int i = 0; i <= address_max[6]; i++) 
+  for (int i = 0; i < (sizeof(address)/5); i++) 
   {
-    address[6] = i;
-    radio.openWritingPipe(address);
+    radio.openWritingPipe(address[i]);
+    const char text[] = "ABC";
+    radio.write(&text, sizeof(text));
   }
 }

@@ -13,9 +13,6 @@ const int LEDEnablePin = 7;  // Enables the LEDs
 // Constants
 const uint16_t loopIterMax = 128; // Iterations of the loop before resetting
 
-// Objects
-RF24 radio(RF24CEPin, RF24CSNPin);
-
 // Internal Values
 int loopIter = 0;                 // Program counter to check current loop iteration
 int rxLightEnable = 1;
@@ -23,7 +20,7 @@ int rxLightEnable = 1;
 void setup()
 {
   // Open Serial
-  Serial.begin(115200);
+  Serial.begin(9600);
   while(!Serial);
   Serial.println("Ready");
 
@@ -32,8 +29,7 @@ void setup()
   pinMode(RF24CSNPin, OUTPUT);
   pinMode(LEDEnablePin, OUTPUT);
 
-  // Initialize Radio
-  radio.begin();
+  radioInit();
   
 }
 
