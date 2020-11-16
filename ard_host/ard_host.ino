@@ -15,12 +15,18 @@ const uint16_t loopIterMax = 128; // Iterations of the loop before resetting
 const uint8_t fftDecimationFactor = 16; // Decimation factor for determining lightMatrix codes
 const uint8_t fftTrigAmplitude = 10; // Trigger amplitude to turn on light elements
 
-// Internal Values
+// Program Counter
 int loopIter = 0;                 // Program counter to check current loop iteration
-double micValueReal[loopIterMax]; // Value over program loop from the microphone
+
+// Mic/DFT Values
+double micValueReal[loopIterMax]; // Value over program loop from the microphone. Repurposed to DFT values after taken
 double micValueImag[loopIterMax]; // Value over program loop from the microphone
-int lightMatrix[loopIterMax/fftDecimationFactor]; // Light Matrix contains integer values to trigger lights per address
-int rxLightEnable = 1;
+
+// Commands per DFT cycle queued for RF transmission
+char lightMatrix[loopIterMax/fftDecimationFactor];
+
+// RF Values
+char rf_cmd[] = "G1";
 
 void setup()
 {
@@ -49,7 +55,7 @@ void loop()
     doAudio();
     doTX();
     loopIter = 0;
-    delay(50);
+    delay(5);
   }
   delay(1);
 }
