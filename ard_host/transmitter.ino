@@ -13,13 +13,13 @@ void radioInit()
 {
   radio.begin();
   radio.stopListening();
-  radio.setDataRate( RF24_2MBPS );
+  radio.setDataRate( RF24_1MBPS );
   radio.setRetries(4,5); // delay, count
 }
 
 void doTX()
 {
-  for (int i = 0; i < (sizeof(address)/5); i++) 
+  for (int i = 0; i <= (sizeof(address)/5); i++) 
   {
     radio.openWritingPipe(address[i]);
     const char text[] = "ABC";

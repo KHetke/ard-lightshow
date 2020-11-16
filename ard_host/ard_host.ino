@@ -49,7 +49,7 @@ void loop()
     doAudio();
     doTX();
     loopIter = 0;
-    delay(50);
+    delay(5);
   }
   delay(1);
 }
