@@ -22,7 +22,6 @@ void doTX()
   for (int i = 0; i <= (sizeof(address)/5); i++) 
   {
     radio.openWritingPipe(address[i]);
-    const char text[] = "ABC";
-    radio.write(&text, sizeof(text));
+    radio.write(&rf_cmd, sizeof(rf_cmd));
   }
 }

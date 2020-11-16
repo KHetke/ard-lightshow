@@ -15,8 +15,7 @@ void doRX()
 {
   if (radio.available())
   {
-    char text[32] = {0};
-    radio.read(&text, sizeof(text));
-    Serial.println(text);
+    radio.read(&rf_cmd, sizeof(rf_cmd));
+    Serial.println(rf_cmd);
   }
 }

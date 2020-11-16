@@ -8,14 +8,16 @@
 // Pins
 const int RF24CEPin = 9;  // RF24 Chip Enable
 const int RF24CSNPin = 8;  // RF24 Chip Select Not
-const int LEDEnablePin = 7;  // Enables the LEDs
+const int IRSendPin = 3;  // Enables the LEDs
 
 // Constants
 const uint16_t loopIterMax = 128; // Iterations of the loop before resetting
 
-// Internal Values
+// Program Counter
 int loopIter = 0;                 // Program counter to check current loop iteration
-int rxLightEnable = 1;
+
+//RF Values
+char rf_cmd[32] = {0};
 
 void setup()
 {
@@ -27,7 +29,7 @@ void setup()
   // Designate Pin Modes
   pinMode(RF24CEPin, OUTPUT);
   pinMode(RF24CSNPin, OUTPUT);
-  pinMode(LEDEnablePin, OUTPUT);
+  pinMode(IRSendPin, OUTPUT);
 
   radioInit();
   
@@ -39,7 +41,7 @@ void loop()
   if (loopIter == loopIterMax)
   {
     doRX();
-    digitalWrite(LEDEnablePin, rxLightEnable);
+    doIR();
     loopIter = 0;
     delay(5);
   }
