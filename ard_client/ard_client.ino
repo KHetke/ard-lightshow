@@ -12,17 +12,19 @@ const int IRSendPin = 3;  // Enables the LEDs
 
 // Constants
 const uint16_t loopIterMax = 128; // Iterations of the loop before resetting
+const int rfCmdLength = 16;
 
 // Program Counter
 int loopIter = 0;                 // Program counter to check current loop iteration
 
 //RF Values
-char rf_cmd[32] = {0};
+char rf_cmd[rfCmdLength] = {0};
+char rf_cmd_prev[rfCmdLength] = {0};
 
 void setup()
 {
   // Open Serial
-  Serial.begin(9600);
+  Serial.begin(115200);
   while(!Serial);
   Serial.println("Ready");
 
@@ -43,7 +45,7 @@ void loop()
     doRX();
     doIR();
     loopIter = 0;
-    delay(5);
+    delay(10);
   }
-  delay(1);
+  delay(2);
 }
