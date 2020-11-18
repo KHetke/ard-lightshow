@@ -63,7 +63,7 @@ void loop()
     translateMatrix();
     doTX();
     loopIter = 0;
-    delay(5);
+    delay(2);
   }
-  delay(0.2);
+  delay(0.1);
 }

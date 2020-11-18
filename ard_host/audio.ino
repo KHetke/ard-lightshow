@@ -26,15 +26,12 @@ void translateMatrix()
       if ((i*j_max+j) == 0);
       else
       {
-        if ((i) == 0)
-        {
-          if (micValueReal[i*j_max+4] >= 400.0) memcpy(lightMatrix[i], "irRed", rfCmdLength);
-          else if (micValueReal[i*j_max+4] >= 360.0) memcpy(lightMatrix[i], "irOrange", rfCmdLength);
-          else if (micValueReal[i*j_max+4] >= 300.0) memcpy(lightMatrix[i], "irYellow", rfCmdLength);
-          else if (micValueReal[i*j_max+4] >= 220.0) memcpy(lightMatrix[i], "irGreen", rfCmdLength);
-          else if (micValueReal[i*j_max+4] >= 100.0) memcpy(lightMatrix[i], "irTeal", rfCmdLength);
-          else if (micValueReal[i*j_max+4] >= 0.0) memcpy(lightMatrix[i], "irBlue", rfCmdLength);
-        }
+        if (micValueReal[i*j_max+4] >= 700.0) memcpy(lightMatrix[i], "irRed", rfCmdLength);
+        else if (micValueReal[i*j_max+4] >= 550.0) memcpy(lightMatrix[i], "irOrange", rfCmdLength);
+        else if (micValueReal[i*j_max+4] >= 400.0) memcpy(lightMatrix[i], "irYellow", rfCmdLength);
+        else if (micValueReal[i*j_max+4] >= 250.0) memcpy(lightMatrix[i], "irGreen", rfCmdLength);
+        else if (micValueReal[i*j_max+4] >= 100.0) memcpy(lightMatrix[i], "irTeal", rfCmdLength);
+        else if (micValueReal[i*j_max+4] >= 0.0) memcpy(lightMatrix[i], "irBlue", rfCmdLength);
       }
       Serial.println(lightMatrix[i]);
     }

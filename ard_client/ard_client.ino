@@ -45,7 +45,7 @@ void loop()
     doRX();
     doIR();
     loopIter = 0;
-    delay(10);
+    delay(2);
   }
-  delay(2);
+  delay(1);
 }
