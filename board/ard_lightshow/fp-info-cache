@@ -1,4 +1,4 @@
-6422690579921
+8028420786684
 custom_arduino
 arduino_nano
 
@@ -27,3 +27,10 @@ wire_ir
 0
 3
 3
+custom_arduino
+wire_power
+
+
+0
+2
+2

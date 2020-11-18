@@ -1,3 +1,0 @@
-(sym_lib_table
-  (lib (name ard_host-rescue)(type Legacy)(uri ${KIPRJMOD}/ard_host-rescue.lib)(options "")(descr ""))
-)
