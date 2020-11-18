@@ -14,24 +14,31 @@ const int MICPin = A0;
 const uint16_t loopIterMax = 128; // Iterations of the loop before resetting
 const uint8_t fftDecimationFactor = 16; // Decimation factor for determining lightMatrix codes
 const uint8_t fftTrigAmplitude = 10; // Trigger amplitude to turn on light elements
+const int rfCmdLength = 16;
+const byte address[][5] = {{'A','L','0','0','0'},
+                           {'A','L','0','0','1'},
+                           {'A','L','0','0','2'},
+                           {'A','L','0','0','3'},
+                           {'A','L','0','0','4'},
+                           {'A','L','0','0','5'},
+                           {'A','L','0','0','6'},
+                           {'A','L','0','0','7'}};
 
 // Program Counter
 int loopIter = 0;                 // Program counter to check current loop iteration
+char lightMatrix[sizeof(address)/5][rfCmdLength] = {0};
 
 // Mic/DFT Values
 double micValueReal[loopIterMax]; // Value over program loop from the microphone. Repurposed to DFT values after taken
 double micValueImag[loopIterMax]; // Value over program loop from the microphone
 
-// Commands per DFT cycle queued for RF transmission
-char lightMatrix[loopIterMax/fftDecimationFactor];
-
 // RF Values
-char rf_cmd[] = "G1";
+byte rf_cmd[rfCmdLength] = "";
 
 void setup()
 {
   // Open Serial
-  Serial.begin(9600);
+  Serial.begin(115200);
   while(!Serial);
   Serial.println("Ready");
 
@@ -52,10 +59,11 @@ void loop()
   loopIter++;
   if (loopIter == loopIterMax)
   {
-    doAudio();
+    doFFT();
+    translateMatrix();
     doTX();
     loopIter = 0;
-    delay(5);
+    delay(2);
   }
-  delay(1);
+  delay(0.1);
 }

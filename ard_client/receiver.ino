@@ -5,7 +5,7 @@ RF24 radio(RF24CEPin, RF24CSNPin);
 void radioInit()
 {
   radio.begin();
-  radio.setDataRate( RF24_1MBPS );
+  radio.setDataRate( RF24_250KBPS );
   
   radio.openReadingPipe(0, address);
   radio.startListening();
