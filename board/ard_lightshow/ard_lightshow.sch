@@ -14,12 +14,6 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 Wire Wire Line
-	3800 3100 3400 3100
-Wire Wire Line
-	3400 3100 3400 4600
-Wire Wire Line
-	3400 4600 3150 4600
-Wire Wire Line
 	3150 4450 3150 2250
 Wire Wire Line
 	3150 2250 4350 2250
@@ -135,7 +129,7 @@ Text Label 5750 3850 0    50   ~ 0
 CSN
 Text Label 5800 5400 0    50   ~ 0
 GND
-Text Label 3450 3100 0    50   ~ 0
+Text Label 3550 3100 0    50   ~ 0
 MIC_OUT
 $Comp
 L custom_arduino:arduino_nano U0
@@ -170,4 +164,96 @@ F 3 "" H 3750 5000 50  0001 C CNN
 	1    3150 4850
 	-1   0    0    -1  
 $EndComp
+$Comp
+L custom_arduino:wire_power U3
+U 1 1 5FB588F3
+P 2350 1700
+F 0 "U3" H 2567 2215 50  0000 C CNN
+F 1 "wire_power" H 2567 2124 50  0000 C CNN
+F 2 "custom_arduino:wire_power" H 2850 1850 50  0001 C CNN
+F 3 "" H 2850 1850 50  0001 C CNN
+	1    2350 1700
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	3150 5400 2450 5400
+Wire Wire Line
+	2450 5400 2450 2000
+Wire Wire Line
+	2450 1600 2350 1600
+Connection ~ 3150 5400
+Wire Wire Line
+	2350 1450 2700 1450
+Wire Wire Line
+	4500 1450 4500 2650
+Text Label 3250 1450 0    50   ~ 0
+VIN
+$Comp
+L Device:CP1 C2
+U 1 1 5FB5A700
+P 2700 1750
+F 0 "C2" H 2815 1796 50  0000 L CNN
+F 1 "100u" H 2815 1705 50  0000 L CNN
+F 2 "Capacitors_THT:CP_Radial_D5.0mm_P2.50mm" H 2700 1750 50  0001 C CNN
+F 3 "~" H 2700 1750 50  0001 C CNN
+	1    2700 1750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2700 1600 2700 1450
+Connection ~ 2700 1450
+Wire Wire Line
+	2700 1450 4500 1450
+Wire Wire Line
+	2700 1900 2700 2000
+Wire Wire Line
+	2700 2000 2450 2000
+Connection ~ 2450 2000
+Wire Wire Line
+	2450 2000 2450 1600
+$Comp
+L Device:R_US R0
+U 1 1 5FB5A89E
+P 3500 4300
+F 0 "R0" H 3568 4346 50  0000 L CNN
+F 1 "1" H 3568 4255 50  0000 L CNN
+F 2 "Resistors_SMD:R_0402" V 3540 4290 50  0001 C CNN
+F 3 "~" H 3500 4300 50  0001 C CNN
+	1    3500 4300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_US R1
+U 1 1 5FB5B7C3
+P 3500 4900
+F 0 "R1" H 3568 4946 50  0000 L CNN
+F 1 "NS" H 3568 4855 50  0000 L CNN
+F 2 "Resistors_SMD:R_0402" V 3540 4890 50  0001 C CNN
+F 3 "~" H 3500 4900 50  0001 C CNN
+	1    3500 4900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3500 4450 3500 4600
+Connection ~ 3500 4600
+Wire Wire Line
+	3500 4600 3500 4750
+Wire Wire Line
+	3500 5050 3500 5300
+Wire Wire Line
+	3500 5300 5250 5300
+Wire Wire Line
+	5250 5300 5250 4600
+Wire Wire Line
+	5250 4600 5100 4600
+Wire Wire Line
+	3500 3100 3500 4150
+Text Label 3550 5300 0    50   ~ 0
+IR_OUT
+Text Label 3100 4600 0    50   ~ 0
+MODCONN
+Wire Wire Line
+	3800 3100 3500 3100
+Wire Wire Line
+	3150 4600 3500 4600
 $EndSCHEMATC
